@@ -1,0 +1,8 @@
+[project]
+name = "maternity-benefit-settlement"
+version = "0.1.0"
+description = "生育保障跨域结算账领域契约"
+requires-python = ">=3.11"
+
+[tool.unittest]
+start-directory = "tests"
