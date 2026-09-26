@@ -1,0 +1,61 @@
+{
+  "insured_relation": {
+    "person_id": "P-1001",
+    "region": "杭州",
+    "employment_type": "灵活就业",
+    "valid_from": "2026-01-01",
+    "valid_to": null
+  },
+  "policies": [
+    {
+      "policy_id": "POL-SH-2026",
+      "region": "上海",
+      "package_id": "PKG-SH-BIRTH",
+      "zero_self_pay": true,
+      "effective_from": "2026-01-01",
+      "effective_to": null
+    },
+    {
+      "policy_id": "POL-HZ-2026",
+      "region": "杭州",
+      "package_id": "PKG-HZ-BIRTH",
+      "zero_self_pay": true,
+      "effective_from": "2026-01-01",
+      "effective_to": null
+    }
+  ],
+  "episode": {
+    "episode_id": "E-9001",
+    "person_id": "P-1001",
+    "hospital_id": "H-2001",
+    "hospital_region": "上海",
+    "admitted_on": "2026-08-01",
+    "discharged_on": "2026-08-05"
+  },
+  "packages": [
+    { "package_id": "PKG-SH-BIRTH", "item_codes": ["A001", "A002", "A003"] },
+    { "package_id": "PKG-HZ-BIRTH", "item_codes": ["A001", "A003"] }
+  ],
+  "charges": [
+    { "charge_id": "C-01", "episode_id": "E-9001", "item_code": "A001", "name": "顺产接生", "amount_fen": 300000, "occurred_on": "2026-08-02", "bill_kind": "basic" },
+    { "charge_id": "C-02", "episode_id": "E-9001", "item_code": "A003", "name": "常规护理", "amount_fen": 80000, "occurred_on": "2026-08-02", "bill_kind": "basic" },
+    { "charge_id": "C-03", "episode_id": "E-9001", "item_code": "M101", "name": "镇痛泵", "amount_fen": 150000, "occurred_on": "2026-08-02", "bill_kind": "analgesia" },
+    { "charge_id": "C-04", "episode_id": "E-9001", "item_code": "M202", "name": "特殊耗材", "amount_fen": 60000, "occurred_on": "2026-08-03", "bill_kind": "material" },
+    { "charge_id": "C-05", "episode_id": "E-9001", "item_code": "X900", "name": "特需病房差价", "amount_fen": 200000, "occurred_on": "2026-08-03", "bill_kind": "other" },
+    { "charge_id": "C-06", "episode_id": "E-9001", "item_code": "K301", "name": "产后出血止血术", "amount_fen": 250000, "occurred_on": "2026-08-03", "bill_kind": "complication" },
+    { "charge_id": "C-07", "episode_id": "E-9001", "item_code": "K302", "name": "输血", "amount_fen": 120000, "occurred_on": "2026-08-03", "bill_kind": "complication" }
+  ],
+  "complication_groups": [
+    { "group_code": "G-PPH", "episode_id": "E-9001", "item_codes": ["K301", "K302"], "diagnosed_on": "2026-08-03" }
+  ],
+  "allowances": [
+    { "allowance_id": "AL-1", "person_id": "P-1001", "allowance_type": "生育津贴", "amount_fen": 800000, "qualified": true, "decided_on": "2026-09-01", "batch_id": "B-2026-09-A" },
+    { "allowance_id": "AL-2", "person_id": "P-1001", "allowance_type": "育儿补贴", "amount_fen": 500000, "qualified": true, "decided_on": "2026-09-02", "batch_id": "B-2026-09-B" }
+  ],
+  "receiving_account": {
+    "account_id": "AC-1",
+    "person_id": "P-1001",
+    "bank": "工商银行",
+    "account_no_masked": "****1234"
+  }
+}

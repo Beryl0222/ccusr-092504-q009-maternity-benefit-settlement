@@ -1,7 +1,7 @@
 [project]
 name = "maternity-benefit-settlement"
 version = "0.1.0"
-description = "生育保障跨域结算账领域契约"
+description = "生育保障跨域结算账：领域契约、费用归类、流水账与分角色视图"
 requires-python = ">=3.11"
 
 [tool.unittest]

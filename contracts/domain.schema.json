@@ -23,7 +23,11 @@
         "CLAIM_CLASSIFIED",
         "SETTLEMENT_AUTHORIZED",
         "PAYMENT_POSTED",
-        "ADJUSTMENT_APPLIED"
+        "ADJUSTMENT_APPLIED",
+        "ACCOUNT_CHANGE_CONFIRMED",
+        "RECOVERY_SCHEDULED",
+        "RECALCULATION_APPLIED",
+        "CHECKPOINT_RECORDED"
       ]
     },
     "aggregate_type": {
@@ -32,7 +36,16 @@
         "insured_person",
         "delivery_episode",
         "benefit_policy",
-        "settlement_case"
+        "settlement_case",
+        "insured_relation",
+        "policy_window",
+        "service_package",
+        "charge_item",
+        "complication_group",
+        "personal_payment",
+        "fund_settlement",
+        "allowance_eligibility",
+        "receiving_account"
       ]
     },
     "aggregate_id": {
