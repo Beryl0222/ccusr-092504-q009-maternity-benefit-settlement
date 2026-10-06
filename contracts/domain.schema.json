@@ -20,18 +20,37 @@
       "type": "string",
       "enum": [
         "ELIGIBILITY_FIXED",
+        "POLICY_PUBLISHED",
+        "EPISODE_REGISTERED",
+        "PACKAGE_CONFIRMED",
+        "CHARGE_CLASSIFIED",
         "CLAIM_CLASSIFIED",
+        "COMPLICATION_GROUPED",
+        "CASE_ACCEPTED",
         "SETTLEMENT_AUTHORIZED",
+        "PERSONAL_PAYMENT_RECORDED",
+        "FUND_SETTLED",
+        "ALLOWANCE_QUALIFIED",
         "PAYMENT_POSTED",
-        "ADJUSTMENT_APPLIED"
+        "ADJUSTMENT_APPLIED",
+        "ACCOUNT_CHANGE_REQUESTED",
+        "ACCOUNT_CHANGE_CONFIRMED",
+        "CORRECTION_APPLIED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "insured_person",
-        "delivery_episode",
         "benefit_policy",
+        "delivery_episode",
+        "service_package",
+        "charge_item",
+        "complication_group",
+        "personal_payment",
+        "fund_settlement",
+        "allowance_entitlement",
+        "payout_account",
         "settlement_case"
       ]
     },
@@ -50,7 +69,51 @@
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "business_key": {
+      "type": "string",
+      "minLength": 1,
+      "description": "跨地区稳定业务键，两地按同一规则推导，用于幂等受理"
+    },
+    "visibility": {
+      "type": "array",
+      "description": "允许看到本事件的角色；缺省表示三方均可见",
+      "items": {
+        "enum": [
+          "hospital",
+          "insurer",
+          "family"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "payload": {
+      "type": "object",
+      "description": "事件携带的业务事实，字段由各领域规则约定"
     }
+  },
+  "x-requires-business-key": [
+    "CASE_ACCEPTED"
+  ],
+  "x-event-aggregates": {
+    "ELIGIBILITY_FIXED": ["insured_person"],
+    "POLICY_PUBLISHED": ["benefit_policy"],
+    "EPISODE_REGISTERED": ["delivery_episode"],
+    "PACKAGE_CONFIRMED": ["service_package"],
+    "CHARGE_CLASSIFIED": ["charge_item"],
+    "CLAIM_CLASSIFIED": ["settlement_case"],
+    "COMPLICATION_GROUPED": ["complication_group"],
+    "CASE_ACCEPTED": ["settlement_case"],
+    "SETTLEMENT_AUTHORIZED": ["settlement_case"],
+    "PERSONAL_PAYMENT_RECORDED": ["personal_payment"],
+    "FUND_SETTLED": ["fund_settlement"],
+    "ALLOWANCE_QUALIFIED": ["allowance_entitlement"],
+    "PAYMENT_POSTED": ["personal_payment", "fund_settlement", "allowance_entitlement"],
+    "ADJUSTMENT_APPLIED": ["personal_payment", "fund_settlement", "allowance_entitlement"],
+    "ACCOUNT_CHANGE_REQUESTED": ["payout_account"],
+    "ACCOUNT_CHANGE_CONFIRMED": ["payout_account"],
+    "CORRECTION_APPLIED": ["delivery_episode", "insured_person"]
   },
   "additionalProperties": true
 }

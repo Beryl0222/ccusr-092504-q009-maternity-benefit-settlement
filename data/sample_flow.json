@@ -1,0 +1,404 @@
+[
+  {
+    "event_id": "EVT-2026-0001",
+    "event_type": "POLICY_PUBLISHED",
+    "aggregate_type": "benefit_policy",
+    "aggregate_id": "POL-320505-2026A",
+    "occurred_at": "2026-01-01T00:00:00+08:00",
+    "version": 1,
+    "summary": "就医地发布生育基本服务包政策，明确零自付合规范围",
+    "visibility": ["hospital", "insurer", "family"],
+    "payload": {
+      "subject_id": "POL-320505-2026A",
+      "policy_id": "POL-320505-2026A",
+      "region": "320505",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "covered_items": ["F001", "F002", "F310", "M101"]
+    }
+  },
+  {
+    "event_id": "EVT-2026-0002",
+    "event_type": "ELIGIBILITY_FIXED",
+    "aggregate_type": "insured_person",
+    "aggregate_id": "SI-330106-884213",
+    "occurred_at": "2026-09-18T09:30:00+08:00",
+    "version": 1,
+    "summary": "灵活就业人员参保关系有效，参保地 330106",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "SI-330106-884213",
+      "insured_id": "SI-330106-884213",
+      "region": "330106",
+      "employment": "flexible",
+      "status": "active"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0003",
+    "event_type": "EPISODE_REGISTERED",
+    "aggregate_type": "delivery_episode",
+    "aggregate_id": "ZY-2026-09-88145",
+    "occurred_at": "2026-09-20T08:12:00+08:00",
+    "version": 1,
+    "summary": "异地定点医院分娩住院登记",
+    "visibility": ["hospital", "insurer"],
+    "payload": {
+      "subject_id": "ZY-2026-09-88145",
+      "insured_id": "SI-330106-884213",
+      "facility_id": "HOS-320505-017",
+      "episode_no": "ZY-2026-09-88145",
+      "admitted_on": "2026-09-20",
+      "region": "320505"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0004",
+    "event_type": "PACKAGE_CONFIRMED",
+    "aggregate_type": "service_package",
+    "aggregate_id": "PKG-320505-BASIC",
+    "occurred_at": "2026-09-21T10:00:00+08:00",
+    "version": 1,
+    "summary": "医院按当地基本服务包确认零自付范围",
+    "visibility": ["hospital", "insurer", "family"],
+    "payload": {
+      "subject_id": "PKG-320505-BASIC",
+      "package_id": "PKG-320505-BASIC",
+      "policy_id": "POL-320505-2026A",
+      "zero_copay_items": ["F001", "F002", "M101"]
+    }
+  },
+  {
+    "event_id": "EVT-2026-0005",
+    "event_type": "CHARGE_CLASSIFIED",
+    "aggregate_type": "charge_item",
+    "aggregate_id": "CHG-2026-0001",
+    "occurred_at": "2026-09-24T15:00:00+08:00",
+    "version": 1,
+    "summary": "基础分娩费用按发生时政策归类，纳入零自付",
+    "visibility": ["hospital", "insurer", "family"],
+    "payload": {
+      "subject_id": "CHG-2026-0001",
+      "charge_id": "CHG-2026-0001",
+      "item_code": "F001",
+      "item_name": "阴道分娩基础服务",
+      "policy_id": "POL-320505-2026A",
+      "scope": "basic_delivery",
+      "covered": true,
+      "amount_fen": 380000,
+      "explanation": null
+    }
+  },
+  {
+    "event_id": "EVT-2026-0006",
+    "event_type": "CHARGE_CLASSIFIED",
+    "aggregate_type": "charge_item",
+    "aggregate_id": "CHG-2026-0002",
+    "occurred_at": "2026-09-24T15:01:00+08:00",
+    "version": 1,
+    "summary": "分娩镇痛费用按发生时政策归类，纳入零自付",
+    "visibility": ["hospital", "insurer", "family"],
+    "payload": {
+      "subject_id": "CHG-2026-0002",
+      "charge_id": "CHG-2026-0002",
+      "item_code": "F002",
+      "item_name": "分娩镇痛（椎管内）",
+      "policy_id": "POL-320505-2026A",
+      "scope": "basic_delivery",
+      "covered": true,
+      "amount_fen": 120000,
+      "explanation": null
+    }
+  },
+  {
+    "event_id": "EVT-2026-0007",
+    "event_type": "CHARGE_CLASSIFIED",
+    "aggregate_type": "charge_item",
+    "aggregate_id": "CHG-2026-0003",
+    "occurred_at": "2026-09-24T15:02:00+08:00",
+    "version": 1,
+    "summary": "目录外药耗给出可解释明细，不纳入零自付",
+    "visibility": ["hospital", "insurer", "family"],
+    "payload": {
+      "subject_id": "CHG-2026-0003",
+      "charge_id": "CHG-2026-0003",
+      "item_code": "M999",
+      "item_name": "进口止血材料",
+      "policy_id": "POL-320505-2026A",
+      "scope": "basic_delivery",
+      "covered": false,
+      "amount_fen": 45000,
+      "explanation": "项目 M999（进口止血材料）不在政策 POL-320505-2026A 合规范围内，需个人自付"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0008",
+    "event_type": "PERSONAL_PAYMENT_RECORDED",
+    "aggregate_type": "personal_payment",
+    "aggregate_id": "PP-2026-0001",
+    "occurred_at": "2026-09-24T18:00:00+08:00",
+    "version": 1,
+    "summary": "个人自付目录外药耗费用",
+    "visibility": ["hospital", "insurer", "family"],
+    "payload": {
+      "subject_id": "PP-2026-0001",
+      "payment_id": "PP-2026-0001",
+      "charge_id": "CHG-2026-0003",
+      "amount_fen": 45000,
+      "method": "self_pay"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0009",
+    "event_type": "COMPLICATION_GROUPED",
+    "aggregate_type": "complication_group",
+    "aggregate_id": "CG-2026-01",
+    "occurred_at": "2026-09-25T09:00:00+08:00",
+    "version": 1,
+    "summary": "产后出血诊断入并发症病组",
+    "visibility": ["hospital", "insurer"],
+    "payload": {
+      "subject_id": "CG-2026-01",
+      "group_id": "CG-2026-01",
+      "episode_no": "ZY-2026-09-88145",
+      "group_code": "O72",
+      "group_name": "产后出血"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0010",
+    "event_type": "CHARGE_CLASSIFIED",
+    "aggregate_type": "charge_item",
+    "aggregate_id": "CHG-2026-0004",
+    "occurred_at": "2026-09-25T09:05:00+08:00",
+    "version": 1,
+    "summary": "并发症处置费用归入并发症支付范围",
+    "visibility": ["hospital", "insurer", "family"],
+    "payload": {
+      "subject_id": "CHG-2026-0004",
+      "charge_id": "CHG-2026-0004",
+      "item_code": "F310",
+      "item_name": "产后出血处置",
+      "policy_id": "POL-320505-2026A",
+      "scope": "complication",
+      "covered": true,
+      "amount_fen": 260000,
+      "complication_group_id": "CG-2026-01",
+      "explanation": null
+    }
+  },
+  {
+    "event_id": "EVT-2026-0011",
+    "event_type": "CASE_ACCEPTED",
+    "aggregate_type": "settlement_case",
+    "aggregate_id": "CASE-2026-0926-001",
+    "occurred_at": "2026-09-26T10:00:00+08:00",
+    "version": 1,
+    "summary": "参保地受理跨域结算请求",
+    "business_key": "MBS-6e2ec829e0572dd1ea144ca6",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "CASE-2026-0926-001",
+      "insured_id": "SI-330106-884213",
+      "facility_id": "HOS-320505-017",
+      "episode_no": "ZY-2026-09-88145",
+      "benefit_kind": "delivery",
+      "accepting_region": "330106"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0012",
+    "event_type": "CASE_ACCEPTED",
+    "aggregate_type": "settlement_case",
+    "aggregate_id": "CASE-2026-0927-002",
+    "occurred_at": "2026-09-27T11:00:00+08:00",
+    "version": 1,
+    "summary": "就医地凭同一业务键重复受理，被幂等拦截",
+    "business_key": "MBS-6e2ec829e0572dd1ea144ca6",
+    "visibility": ["insurer"],
+    "payload": {
+      "subject_id": "CASE-2026-0927-002",
+      "insured_id": "SI-330106-884213",
+      "facility_id": "HOS-320505-017",
+      "episode_no": "ZY-2026-09-88145",
+      "benefit_kind": "delivery",
+      "accepting_region": "320505"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0013",
+    "event_type": "SETTLEMENT_AUTHORIZED",
+    "aggregate_type": "settlement_case",
+    "aggregate_id": "CASE-2026-0926-001",
+    "occurred_at": "2026-09-28T14:00:00+08:00",
+    "version": 2,
+    "summary": "结算核定：合规范围零自付，基金应付 6400.00 元",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "CASE-2026-0926-001",
+      "authorized_fen": 640000,
+      "zero_copay": true
+    }
+  },
+  {
+    "event_id": "EVT-2026-0014",
+    "event_type": "FUND_SETTLED",
+    "aggregate_type": "fund_settlement",
+    "aggregate_id": "FS-2026-0001",
+    "occurred_at": "2026-09-29T09:00:00+08:00",
+    "version": 1,
+    "summary": "参保地与就医地之间完成跨域清分",
+    "visibility": ["insurer"],
+    "payload": {
+      "subject_id": "FS-2026-0001",
+      "settlement_id": "FS-2026-0001",
+      "payer_region": "330106",
+      "payee_region": "320505",
+      "amount_fen": 640000
+    }
+  },
+  {
+    "event_id": "EVT-2026-0015",
+    "event_type": "PAYMENT_POSTED",
+    "aggregate_type": "fund_settlement",
+    "aggregate_id": "FS-2026-0001",
+    "occurred_at": "2026-09-30T09:30:00+08:00",
+    "version": 2,
+    "summary": "基金拨付至就医地，检查点 1 完成",
+    "visibility": ["insurer"],
+    "payload": {
+      "subject_id": "FS-2026-0001",
+      "flow_id": "FL-2026-0001",
+      "amount_fen": 640000,
+      "payer_region": "330106",
+      "payee_region": "320505",
+      "checkpoint_seq": 1
+    }
+  },
+  {
+    "event_id": "EVT-2026-0016",
+    "event_type": "ALLOWANCE_QUALIFIED",
+    "aggregate_type": "allowance_entitlement",
+    "aggregate_id": "ALW-2026-0001",
+    "occurred_at": "2026-10-01T10:00:00+08:00",
+    "version": 1,
+    "summary": "生育津贴资格确认，划入 2026-10A 批次",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "ALW-2026-0001",
+      "entitlement_id": "ALW-2026-0001",
+      "benefit_kind": "maternity_allowance",
+      "batch": "2026-10A",
+      "amount_fen": 520000
+    }
+  },
+  {
+    "event_id": "EVT-2026-0017",
+    "event_type": "PAYMENT_POSTED",
+    "aggregate_type": "allowance_entitlement",
+    "aggregate_id": "ALW-2026-0001",
+    "occurred_at": "2026-10-02T10:30:00+08:00",
+    "version": 2,
+    "summary": "生育津贴拨付至家庭收款账户，检查点 1 完成",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "ALW-2026-0001",
+      "flow_id": "FL-2026-0002",
+      "amount_fen": 520000,
+      "payer_region": "330106",
+      "payee_region": "330106",
+      "checkpoint_seq": 1,
+      "account_number": "6228480402564890018"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0018",
+    "event_type": "ACCOUNT_CHANGE_REQUESTED",
+    "aggregate_type": "payout_account",
+    "aggregate_id": "ACCT-884213",
+    "occurred_at": "2026-10-03T09:00:00+08:00",
+    "version": 1,
+    "summary": "家庭申请变更收款账户",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "ACCT-884213",
+      "request_id": "ACR-2026-0001",
+      "requested_by": "OPS-3301",
+      "new_account_tail": "7731"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0019",
+    "event_type": "ACCOUNT_CHANGE_CONFIRMED",
+    "aggregate_type": "payout_account",
+    "aggregate_id": "ACCT-884213",
+    "occurred_at": "2026-10-03T16:00:00+08:00",
+    "version": 2,
+    "summary": "两名核验人完成双重核验，账户变更生效",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "ACCT-884213",
+      "request_id": "ACR-2026-0001",
+      "verifiers": ["OPS-1001", "OPS-1002"]
+    }
+  },
+  {
+    "event_id": "EVT-2026-0020",
+    "event_type": "CORRECTION_APPLIED",
+    "aggregate_type": "delivery_episode",
+    "aggregate_id": "ZY-2026-09-88145",
+    "occurred_at": "2026-10-04T11:00:00+08:00",
+    "version": 2,
+    "summary": "病案修订晚到，只重算受影响的事实",
+    "visibility": ["hospital", "insurer"],
+    "payload": {
+      "subject_id": "ZY-2026-09-88145",
+      "reason": "病案修订：补充产后出血诊断依据",
+      "affected_fact_types": ["charge_item", "complication_group", "fund_settlement", "personal_payment"]
+    }
+  },
+  {
+    "event_id": "EVT-2026-0021",
+    "event_type": "ADJUSTMENT_APPLIED",
+    "aggregate_type": "fund_settlement",
+    "aggregate_id": "FS-2026-0001",
+    "occurred_at": "2026-10-05T09:00:00+08:00",
+    "version": 3,
+    "summary": "并发症费用重算后冲正多付部分，原流水保留",
+    "visibility": ["insurer"],
+    "payload": {
+      "subject_id": "FS-2026-0001",
+      "flow_id": "FL-2026-0003",
+      "kind": "reversal",
+      "original_flow_id": "FL-2026-0001",
+      "amount_fen": 60000,
+      "reason": "病案修订后并发症费用重算，冲正多付部分",
+      "payer_region": "330106",
+      "payee_region": "320505"
+    }
+  },
+  {
+    "event_id": "EVT-2026-0022",
+    "event_type": "ADJUSTMENT_APPLIED",
+    "aggregate_type": "allowance_entitlement",
+    "aggregate_id": "ALW-2026-0001",
+    "occurred_at": "2026-10-05T09:30:00+08:00",
+    "version": 3,
+    "summary": "津贴重复发放部分分两期追回，不整笔扣回",
+    "visibility": ["insurer", "family"],
+    "payload": {
+      "subject_id": "ALW-2026-0001",
+      "flow_id": "FL-2026-0004",
+      "kind": "installment_recovery",
+      "original_flow_id": "FL-2026-0002",
+      "amount_fen": 120000,
+      "reason": "津贴批次重复发放，分两期追回",
+      "installments": [
+        {"due_on": "2026-11-15", "amount_fen": 60000},
+        {"due_on": "2026-12-15", "amount_fen": 60000}
+      ],
+      "payer_region": "330106",
+      "payee_region": "330106"
+    }
+  }
+]
